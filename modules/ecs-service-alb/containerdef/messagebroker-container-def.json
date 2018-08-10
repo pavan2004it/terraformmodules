@@ -1,0 +1,42 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "AnypointMqConfig:BaseUrl",
+        "value": "${AnypointMqConfigBaseUrl}"
+      },
+      {
+        "name": "AnypointMqConfig:ClientId",
+        "value": "${AnypointMqConfigClientId}"
+      },
+      {
+        "name": "AnypointMqConfig:ClientSecret",
+        "value": "${AnypointMqConfigClientSecret}"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/messagebroker:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "messagebroker",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 5000,
+        "hostPort": 5000,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

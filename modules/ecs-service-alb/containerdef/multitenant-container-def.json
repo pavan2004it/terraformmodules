@@ -1,0 +1,46 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "ExternalServices:StorageServiceURI",
+        "value": "http://${ALB}:3000/api/StorageService/datablobs/"
+      },
+      {
+        "name": "ExternalServices:MultiTenantContainer",
+        "value": "multitenantcontainer"
+      },
+      {
+        "name": "ExternalServices:AuthorizationsTenantsURI",
+        "value": "http://${ALB}:7080/api/authorizationsservice/authorizationsTenants/"
+      },
+      {
+        "name": "ExternalServices:AuthorizationsURI",
+        "value": "http://${ALB}:7080/api/authorizationsservice/authorizations/"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/multitenant:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "multitenant",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 7900,
+        "hostPort": 7900,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

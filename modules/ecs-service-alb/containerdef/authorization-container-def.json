@@ -1,0 +1,34 @@
+[
+  {
+    "environment": [
+      {
+        "name": "DataProvider:ConnectionString",
+        "value": "${ConnectionString}"
+      },
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/authorization:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 1024,
+    "cpu": 512,
+    "name": "authorization",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 7080,
+        "hostPort": 7080,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

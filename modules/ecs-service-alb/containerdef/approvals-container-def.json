@@ -1,0 +1,42 @@
+[
+  {
+  "environment": [
+    {
+      "name": "ASPNETCORE_ENVIRONMENT",
+      "value": "${ASPNETCORE_ENVIRONMENT}"
+    },
+    {
+      "name": "StorageService:BaseUrl",
+      "value": "http://${ALB}:3000/api/StorageService/"
+    },
+    {
+      "name": "MessageBroker:BaseUrl",
+      "value": "http://${ALB}:5000/api/messagebroker"
+    },
+    {
+      "name": "JwtOptions:Authority",
+      "value": "${adfs.url}"
+    }
+  ],
+  "essential": true,
+  "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/approvals:latest",
+  "logConfiguration": {
+    "logDriver": "awslogs",
+    "options": {
+      "awslogs-group": "${LOG_GROUP}",
+      "awslogs-region": "us-east-1"
+    }
+  },
+  "memory": 1024,
+  "cpu": 512,
+  "name": "approvals",
+  "network_mode": "bridge",
+  "portMappings": [
+    {
+      "containerPort": 9000,
+      "hostPort": 9000,
+      "protocol": "tcp"
+    }
+  ]
+  }
+]

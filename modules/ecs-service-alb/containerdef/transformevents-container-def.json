@@ -1,0 +1,46 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "ExternalServices:FeedServiceBase",
+        "value": "http://${ALB}:7000/api/feedstore/"
+      },
+      {
+        "name": "ExternalServices:FeedServiceQuery",
+        "value": "feeds?id="
+      },
+      {
+        "name": "ExternalServices:EventDatesURI",
+        "value": "dates/"
+      },
+      {
+        "name": "ExternalServices:EventDateServiceBase",
+        "value": "http://${ALB}:5400/api/eventdateconfig/"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/transformevents:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "transformevents",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 7050,
+        "hostPort": 7050,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

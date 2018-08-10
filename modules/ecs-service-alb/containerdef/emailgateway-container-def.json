@@ -1,0 +1,30 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/emailgateway:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "emailgateway",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 7098,
+        "hostPort": 7098,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

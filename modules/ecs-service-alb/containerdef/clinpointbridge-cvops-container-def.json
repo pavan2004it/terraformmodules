@@ -1,0 +1,34 @@
+[
+  {
+    "environment": [
+      {
+        "name": "DataProvider:ConnectionString",
+        "value": "${ClinPointDbConnString_flscvops}"
+      },
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/clinpointbridge:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "clinpointbridge-cvops",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 5700,
+        "hostPort": 5702,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

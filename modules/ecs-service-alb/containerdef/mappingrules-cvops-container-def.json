@@ -1,0 +1,34 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "ClinpayConfig:SystemTenantDbConnString",
+        "value": "Data Source=${CVOPS_DB};Initial Catalog=SystemDB;User Id=ClinFeeduser;Password=Abcd@4321;Integrated Security=false;Connection Timeout=60;MultipleActiveResultSets=false;"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/mappingrules:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "mappingrules-cvops",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 5500,
+        "hostPort": 5502,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

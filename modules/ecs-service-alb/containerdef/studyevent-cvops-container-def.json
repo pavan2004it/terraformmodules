@@ -1,0 +1,50 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "ExternalServices:QueueServiceURI",
+        "value": "http://${ALB}:5000/api/MessageBroker/queuemessage"
+      },
+      {
+        "name": "ExternalServices:BlobServiceURI",
+        "value": "http://${ALB}:3000/api/StorageService/datablob"
+      },
+      {
+        "name": "ConnectionStrings:QueueStubStore",
+        "value": "Data Source=${CVOPS_DB};Initial Catalog=StudyEventDB;User Id=ClinFeeduser;Password=Abcd@4321;Integrated Security=false;Connection Timeout=60;MultipleActiveResultSets=false;"
+      },
+      {
+        "name": "ConnectionStrings:BlobStubStore",
+        "value": "Data Source=${CVOPS_DB};Initial Catalog=StudyEventDB;User Id=ClinFeeduser;Password=Abcd@4321;Integrated Security=false;Connection Timeout=60;MultipleActiveResultSets=false;"
+      },
+      {
+        "name": "ConnectionStrings:SystemTenantDB",
+        "value": "Data Source=${CVOPS_DB};Initial Catalog=SystemDB;User Id=ClinFeeduser;Password=Abcd@4321;Integrated Security=false;Connection Timeout=60;MultipleActiveResultSets=false;"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/studyevent:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "studyevent-cvops",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 5600,
+        "hostPort": 5602,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

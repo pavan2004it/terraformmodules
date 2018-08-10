@@ -1,0 +1,46 @@
+[
+  {
+    "environment": [
+      {
+        "name": "JwtOptions:Authority",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "StorageService:BaseUrl",
+        "value": "http://${ALB}:3000/api/storageservice/"
+      },
+      {
+        "name": "MessageBroker:BaseUrl",
+        "value": "http://${ALB}:5000/api/messagebroker/"
+      },
+      {
+        "name": "FeedService:BaseUrl",
+        "value": "http://${ALB}:7000/api/feedstore/"
+      },
+      {
+        "name": "ApprovalService:BaseUrl",
+        "value": "http://${ALB}:9000/api/approvals/"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/feedservice:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 512,
+    "cpu": 256,
+    "name": "feedservice",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 7000,
+        "hostPort": 7000,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "environment": [
+      {
+        "name": "ADFSURL",
+        "value": "${adfs.url}"
+      },
+      {
+        "name": "APPROVALS_HOST",
+        "value": "http://${ALB}:9000"
+      },
+      {
+        "name": "AUTH_HOST",
+        "value": "http://${ALB}:7080"
+      },
+      {
+        "name": "DATECONFIG_HOST",
+        "value": "http://${ALB}:5400"
+      },
+      {
+        "name": "FEED_SERVICE_HOST",
+        "value": "http://${ALB}:7000"
+      },
+      {
+        "name": "IDLE_TIMEOUT",
+        "value": "600"
+      },
+      {
+        "name": "MESSAGEBROKER_HOST",
+        "value": "http://${ALB}:5000"
+      },
+      {
+        "name": "MULTITENANTS_HOST",
+        "value": "http://${ALB}:7900"
+      },
+      {
+        "name": "REFRESH_INTERVAL",
+        "value": "3300"
+      },
+      {
+        "name": "THRESHOLD_HOST",
+        "value": "http://${ALB}:9000"
+      },
+      {
+        "name": "UISERVICE_HOST",
+        "value": "http://${ALB}:7095"
+      }
+    ],
+    "essential": true,
+    "image": "672985825598.dkr.ecr.us-east-1.amazonaws.com/fls/clinfeedui:latest",
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "${LOG_GROUP}",
+        "awslogs-region": "us-east-1"
+      }
+    },
+    "memory": 2048,
+    "cpu": 1024,
+    "name": "clinfeedui",
+    "network_mode": "bridge",
+    "portMappings": [
+      {
+        "containerPort": 4200,
+        "hostPort": 4200,
+        "protocol": "tcp"
+      }
+    ]
+  }
+]
