@@ -1,2 +1,1 @@
-# client.bioclinica
-Infrastructure for Bioclinica
+Terraform Modules for ECS
