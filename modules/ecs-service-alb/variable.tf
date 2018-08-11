@@ -4,7 +4,7 @@ variable "vpc_id" {}
 variable "private_subnet_ids" { type = "list" }
 variable "access_log_prefix" {}
 //variable "ssl_certificate_arn" {}
-variable "cluster_name" {}
+variable "CLUSTER_ARN" {}
 variable "desired_count" { default = "1" }
 variable "deployment_min_healthy_percent" { default = "50" }
 variable "deployment_max_percent" { default = "200" }
