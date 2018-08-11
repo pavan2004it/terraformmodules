@@ -50,7 +50,7 @@ module "ecs-clinfeed-service" {
   ecs_autoscale_role_arn  = "${module.ecs.ecs_autoscale_role_arn}"
   vpc_id                  = "${var.vpc_id}"
   private_subnet_ids       = ["${var.private_subnet_ids}"]
-  cluster_name            = "Clinfeed-Test"
+  CLUSTER_ARN            = "${module.ecs.cluster_arn}"
   container_port          = "${var.container_port}"
   ecs_service_role_arn   = "${module.ecs.ecs_service_role_name}"
   access_log_prefix       = "ALB"
