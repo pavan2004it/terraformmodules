@@ -131,7 +131,7 @@ resource "aws_ecs_service" "main" {
   }
 
   name                               = "${element(var.services, count.index)}"
-  cluster                            = "${var.cluster_name}"
+  cluster                            = "${var.CLUSTER_ARN}"
   # task_definition                    = "${element(aws_ecs_task_definition.task_definition.id, count.index)}"
   task_definition                    = "${aws_ecs_task_definition.task_definition.*.arn[count.index]}"
   desired_count                      = "${var.desired_count}"
