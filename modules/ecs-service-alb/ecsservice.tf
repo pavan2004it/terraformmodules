@@ -147,7 +147,7 @@ resource "aws_ecs_service" "main" {
     container_port   = "${element(var.container_port, count.index)}"
   }
    
-  depends_on = ["aws_alb.main"]
+  depends_on = ["aws_lb_listener_rule.clinfeed"]
 
 }
 
